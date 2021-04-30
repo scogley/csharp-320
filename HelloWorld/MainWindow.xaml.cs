@@ -20,10 +20,14 @@ namespace HelloWorld
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Models.User user = new Models.User();
         public MainWindow()
         {
             InitializeComponent();
             uxSubmit.IsEnabled = false;
+            uxName.DataContext = user;
+            uxNameError.DataContext = user;
+            uxContainer.DataContext = user; // now any child control of StackPanel can access he DataContext and bind to it
         }
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
