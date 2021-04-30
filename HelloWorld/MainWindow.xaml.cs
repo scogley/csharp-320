@@ -34,13 +34,7 @@ namespace HelloWorld
             MessageBox.Show("Submitting password:" + uxPassword.Text);
         }
 
-        private void uxName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (uxName.Text.Length > 0 && uxPassword.Text.Length > 0) uxSubmit.IsEnabled = true;
-            else uxSubmit.IsEnabled = false;
-        }
-
-        private void uxPassword_TextChanged(object sender, TextChangedEventArgs e)
+        private void uxTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (uxName.Text.Length > 0 && uxPassword.Text.Length > 0) uxSubmit.IsEnabled = true;
             else uxSubmit.IsEnabled = false;
