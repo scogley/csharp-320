@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="ComboWindow" Height="450" Width="800">
     <StackPanel>
-        <ComboBox x:Name="uxComboBox"
+        <!--<ComboBox x:Name="uxComboBox"
                 DisplayMemberPath="UserName"
-                SelectionChanged="uxComboBox_SelectionChanged" />
+                SelectionChanged="uxComboBox_SelectionChanged" />-->
+        <ListBox x:Name="uxListBox" Width="100" Height="55"
+                DisplayMemberPath="UserName"
+                SelectionChanged="uxListBox_SelectionChanged"/>
 
         <Grid x:Name="uxGrid">
             <Grid.RowDefinitions>

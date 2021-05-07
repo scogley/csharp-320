@@ -24,10 +24,16 @@ namespace HelloWorld
 
             var sample = new SampleContext();
             sample.User.Load();
-            uxComboBox.ItemsSource = sample.User.Local.ToObservableCollection();
+            //uxComboBox.ItemsSource = sample.User.Local.ToObservableCollection();
+            uxListBox.ItemsSource = sample.User.Local.ToObservableCollection();
         }
 
         private void uxComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            uxGrid.DataContext = e.AddedItems[0];
+        }
+
+        private void uxListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             uxGrid.DataContext = e.AddedItems[0];
         }
