@@ -37,5 +37,6 @@ namespace HelloWorld
         {
             uxGrid.DataContext = e.AddedItems[0];
         }
+
     }
 }
