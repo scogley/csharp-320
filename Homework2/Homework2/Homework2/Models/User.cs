@@ -1,19 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel;
 
-namespace HelloWorld.Models
+namespace Homework2.Models
 {
     class User : IDataErrorInfo, INotifyPropertyChanged
     {
         private string name = string.Empty;
         private string password = string.Empty;
         private string nameError;
-        private string passwordError;
-
-        // Add ToString method
-        public override string ToString()
-        {
-            return name;
-        }
 
         public string NameError
         {
@@ -27,22 +23,6 @@ namespace HelloWorld.Models
                 {
                     nameError = value;
                     OnPropertyChanged("NameError");
-                }
-            }
-        }
-
-        public string PasswordError
-        {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                if (passwordError != value)
-                {
-                    passwordError = value;
-                    OnPropertyChanged("PasswordError");
                 }
             }
         }
@@ -71,7 +51,11 @@ namespace HelloWorld.Models
             }
             set
             {
-                password = value;
+                if (password != value)
+                {
+                    password = value;
+                    OnPropertyChanged("Password");
+                }
             }
         }
 
@@ -102,18 +86,6 @@ namespace HelloWorld.Models
                             if (Name.Length > 12)
                             {
                                 NameError = "Name cannot be longer than 12 characters.";
-                            }
-                            break;
-                        }
-                    case "Password":
-                        {
-                            if (string.IsNullOrEmpty(Password))
-                            {
-                                PasswordError = "Password cannot be empty";
-                            }
-                            if (password.Length > 12)
-                            {
-                                PasswordError = "Password cannot be longer than 12 characters.";
                             }
                             break;
                         }
