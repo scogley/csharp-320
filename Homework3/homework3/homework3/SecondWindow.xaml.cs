@@ -34,7 +34,17 @@ namespace homework3
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(uxList.ItemsSource);
             view.SortDescriptions.Clear();
-            view.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
+
+            var gridViewColHeader = e.OriginalSource as GridViewColumnHeader;
+
+            if (gridViewColHeader.Column.Header.ToString() == "Password")
+            {
+                view.SortDescriptions.Add(new System.ComponentModel.SortDescription("Password", System.ComponentModel.ListSortDirection.Ascending));
+            }
+            else if (gridViewColHeader.Column.Header.ToString() == "Name")
+            {
+                view.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
+            }
         }
 
     }
