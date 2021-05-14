@@ -23,13 +23,6 @@ namespace homework3
         public MainWindow()
         {
             InitializeComponent();
-            var users = new List<Models.User>();
-
-            users.Add(new Models.User { Name = "Dave", Password = "1DavePwd" });
-            users.Add(new Models.User { Name = "Steve", Password = "2StevePwd" });
-            users.Add(new Models.User { Name = "Lisa", Password = "3LisaPwd" });
-
-            uxList.ItemsSource = users;
         }
     }
 }
