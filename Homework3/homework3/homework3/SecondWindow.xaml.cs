@@ -27,14 +27,14 @@ namespace homework3
             users.Add(new Models.User { Name = "Lisa", Password = "3LisaPwd" });
 
             uxList.ItemsSource = users;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(uxList.ItemsSource);
-            view.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
 
         }
         
         private void uxListGridViewColumnHeaderClicked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("foo");
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(uxList.ItemsSource);
+            view.SortDescriptions.Clear();
+            view.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
         }
 
     }
