@@ -24,5 +24,27 @@ namespace Formula1App
         {
             InitializeComponent();
         }
+
+        private void uxFileNew_Click(object sender, RoutedEventArgs e)
+        {
+            //todo: add stuff here!
+        }
+
+        private void uxFileChange_Click(object sender, RoutedEventArgs e)
+        {
+            //todo: add stuff here!
+        }
+
+        private void uxFileDelete_Click(object sender, RoutedEventArgs e)
+        {
+            //todo: add stuff here!
+        }
+
+        private void SortGridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            //todo: add stuff here!
+        }
     }
+
+
 }
