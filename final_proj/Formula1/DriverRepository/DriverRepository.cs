@@ -6,7 +6,7 @@ using DriverDB;
 
 namespace DriverRepository
 {
-    public class ContactModel
+    public class DriverModel
     {
         public int Id { get; set; }
         public string CircuitName { get; set; }
@@ -17,16 +17,16 @@ namespace DriverRepository
         public System.DateTime CreatedDate { get; set; }
     }
 
-    public class ContactRepository
+    public class DriverRepository
     {
-        public ContactModel Add(ContactModel contactModel)
+        public DriverModel Add(DriverModel contactModel)
         {
             var driverDb = ToDbModel(contactModel);
 
             DatabaseManager.Instance.TblDriver.Add(driverDb);
             DatabaseManager.Instance.SaveChanges();
 
-            contactModel = new ContactModel
+            contactModel = new DriverModel
             {
                 Id = driverDb.Id,
                 CircuitName = driverDb.CircuitName,
@@ -39,11 +39,11 @@ namespace DriverRepository
             return contactModel;
         }
 
-        public List<ContactModel> GetAll()
+        public List<DriverModel> GetAll()
         {
             // Use .Select() to map the database contacts to ContactModel
             var items = DatabaseManager.Instance.TblDriver
-              .Select(t => new ContactModel
+              .Select(t => new DriverModel
               {
                   Id = t.Id,
                   CircuitName = t.CircuitName,
@@ -57,13 +57,13 @@ namespace DriverRepository
             return items;
         }
 
-        public bool Update(ContactModel contactModel)
+        public bool Update(DriverModel driverModel)
         {
-            var original = DatabaseManager.Instance.TblDriver.Find(contactModel.Id);
+            var original = DatabaseManager.Instance.TblDriver.Find(driverModel.Id);
 
             if (original != null)
             {
-                DatabaseManager.Instance.Entry(original).CurrentValues.SetValues(ToDbModel(contactModel));
+                DatabaseManager.Instance.Entry(original).CurrentValues.SetValues(ToDbModel(driverModel));
                 DatabaseManager.Instance.SaveChanges();
                 return true;
             }
@@ -87,7 +87,7 @@ namespace DriverRepository
             return true;
         }
 
-        private TblDriver ToDbModel(ContactModel contactModel)
+        private TblDriver ToDbModel(DriverModel contactModel)
         {
             var contactDb = new TblDriver
             {

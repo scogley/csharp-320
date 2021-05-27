@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DriverRepository\DriverRepository.csproj" />
+  </ItemGroup>
+
 </Project>
