@@ -23,9 +23,9 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding CircuitName}" Width="100" >
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Width="100" >
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="CircuitName" Click="SortGridViewColumnHeader_Click">Circuit Name</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Id" Click="SortGridViewColumnHeader_Click">Id</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     
@@ -34,7 +34,7 @@
                             <GridViewColumnHeader Tag="Name" Click="SortGridViewColumnHeader_Click">Driver Name</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    
+
                     <GridViewColumn DisplayMemberBinding="{Binding TeamName}" Width="100" >
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="Team" Click="SortGridViewColumnHeader_Click">Team Name</GridViewColumnHeader>
