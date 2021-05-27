@@ -13,5 +13,20 @@ namespace Formula1App
     /// </summary>
     public partial class App : Application
     {
+        private static DriverRepository.DriverRepository contactRepository;
+
+        static App()
+        {
+            contactRepository = new DriverRepository.DriverRepository();
+        }
+
+        public static DriverRepository.DriverRepository DriverRepository
+        {
+            get
+            {
+                return contactRepository;
+            }
+        }
+
     }
 }
