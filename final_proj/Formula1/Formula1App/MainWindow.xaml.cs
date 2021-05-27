@@ -27,7 +27,19 @@ namespace Formula1App
 
         private void uxFileNew_Click(object sender, RoutedEventArgs e)
         {
-            //todo: add stuff here!
+            var window = new DriverWindow();
+
+            if (window.ShowDialog() == true)
+            {
+                var uiContactModel = window.Driver;
+
+                var repositoryContactModel = uiContactModel.ToRepositoryModel();
+
+                App.DriverRepository.Add(repositoryContactModel);
+
+                // OR
+                //App.ContactRepository.Add(window.Contact.ToRepositoryModel());
+            }
         }
 
         private void uxFileChange_Click(object sender, RoutedEventArgs e)
