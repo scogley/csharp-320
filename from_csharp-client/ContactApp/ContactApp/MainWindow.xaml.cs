@@ -46,6 +46,36 @@ namespace ContactApp
             //uxContactList.ItemsSource = uiContactModelList;
         }
 
+        private void uxFileChange_Click(object sender, RoutedEventArgs e)
+        {
+            //var window = new ContactWindow();
+            //window.Contact = selectedContact;
+
+            //if (window.ShowDialog() == true)
+            //{
+            //    App.ContactRepository.Update(window.Contact.ToRepositoryModel());
+            //    LoadContacts();
+            //}
+
+            
+
+            var window = new ContactWindow();
+            // fix this to call clone and not update in background
+            window.Contact = selectedContact.Clone();
+
+            if (window.ShowDialog() == true)
+            {
+                App.ContactRepository.Update(window.Contact.ToRepositoryModel());
+                LoadContacts();
+            }
+        }
+
+        private void uxFileChange_Loaded(object sender, RoutedEventArgs e)
+        {
+            uxFileChange.IsEnabled = (selectedContact != null);
+            uxContextFileChange.IsEnabled = uxFileChange.IsEnabled;
+        }
+
         private void uxFileNew_Click(object sender, RoutedEventArgs e)
         {
             var window = new ContactWindow();
@@ -103,9 +133,7 @@ namespace ContactApp
                 drawingContext.Pop();
             }
         }
-        private void uxFileChange_Click(object sender, RoutedEventArgs e)
-        {
-        }
+    
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -177,6 +205,12 @@ namespace ContactApp
             selectedContact = (ContactModel)uxContactList.SelectedValue;
             if (selectedContact == null) uxContextFileDelete.IsEnabled = false;
             else uxContextFileDelete.IsEnabled = true;
+        }
+
+        private void uxContactList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            // Re-use existing function. Call this FileChange click function with two null parameters.
+            uxFileChange_Click(sender, null);
         }
     }
 }

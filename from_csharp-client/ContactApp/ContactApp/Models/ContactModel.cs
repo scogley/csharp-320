@@ -13,6 +13,12 @@ namespace ContactApp.Models
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        // Fix update so background contacts are not updated.
+        internal ContactModel Clone()
+        {
+            return (ContactModel)this.MemberwiseClone();
+        }
+
         public ContactRepository.ContactModel ToRepositoryModel()
         {
             var repositoryModel = new ContactRepository.ContactModel
