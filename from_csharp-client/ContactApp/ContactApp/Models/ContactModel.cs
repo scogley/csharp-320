@@ -23,6 +23,8 @@ namespace ContactApp.Models
 
         private string nameError { get; set; }
 
+        private string emailError { get; set; }
+
         // INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -55,6 +57,15 @@ namespace ContactApp.Models
 
                             return NameError;
                         }
+                    case "Email":
+                        {
+                            EmailError = "";
+                            if (Email == null || string.IsNullOrEmpty(Email))
+                            {
+                                EmailError = "Email cannot be empty.";
+                            }
+                            return EmailError;
+                        }
                 }
 
                 return null;
@@ -73,6 +84,22 @@ namespace ContactApp.Models
                 {
                     nameError = value;
                     OnPropertyChanged("NameError");
+                }
+            }
+        }
+
+        public string EmailError
+        {
+            get
+            {
+                return emailError;
+            }
+            set
+            {
+                if (emailError != value)
+                {
+                    emailError = value;
+                    OnPropertyChanged("EmailError");
                 }
             }
         }
