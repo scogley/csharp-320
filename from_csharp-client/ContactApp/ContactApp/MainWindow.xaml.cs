@@ -13,11 +13,15 @@ namespace ContactApp
     {
         private GridViewColumnHeader listViewSortCol = null; // added for column sorting
         private SortAdorner listViewSortAdorner = null; // added for column sorting
+        private ContactModel selectedContact;
+
         public MainWindow()
         {
             InitializeComponent();
 
             LoadContacts();
+
+
         }
 
         private void LoadContacts()
@@ -27,6 +31,7 @@ namespace ContactApp
             uxContactList.ItemsSource = contacts
                 .Select(t => ContactModel.ToModel(t))
                 .ToList();
+            uxContextFileDelete_Set_Enabled_State();
 
             // OR
             //var uiContactModelList = new List<ContactModel>();
@@ -104,6 +109,9 @@ namespace ContactApp
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
+            App.ContactRepository.Remove(selectedContact.Id);
+            selectedContact = null;
+            LoadContacts();
         }
 
         private void lvNameColumnHeader_Click(object sender, RoutedEventArgs e)
@@ -148,6 +156,27 @@ namespace ContactApp
             listViewSortAdorner = new SortAdorner(listViewSortCol, newDir);
             AdornerLayer.GetAdornerLayer(listViewSortCol).Add(listViewSortAdorner);
             uxContactList.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
+        }
+
+        private void uxContactList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedContact = (ContactModel)uxContactList.SelectedValue;
+            //if (selectedContact == null) uxContextFileDelete.IsEnabled = false;
+            uxContextFileDelete_Set_Enabled_State();
+        }
+
+        
+
+        private void uxFileDelete_Loaded(object sender, RoutedEventArgs e)
+        {
+            uxFileDelete.IsEnabled = (selectedContact != null);
+        }
+
+        private void uxContextFileDelete_Set_Enabled_State()
+        {
+            selectedContact = (ContactModel)uxContactList.SelectedValue;
+            if (selectedContact == null) uxContextFileDelete.IsEnabled = false;
+            else uxContextFileDelete.IsEnabled = true;
         }
     }
 }
