@@ -22,6 +22,8 @@ namespace TicTacToe
     {
         // The current player X or O. X is default.
         private string player = "X";
+
+        bool isGameOver = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,13 +31,13 @@ namespace TicTacToe
 
         private void uxNewGame_Click(object sender, RoutedEventArgs e)
         {
-            clear_board();
+            reset_game();
             // X goes first, then O.
 
             // When you get three in a row, you declare a winner. Stop any more actions.
         }
 
-        private void clear_board()
+        private void reset_game()
         {
             // Erase the board and start with X again.
             foreach (Button child in uxGrid.Children)
@@ -43,6 +45,7 @@ namespace TicTacToe
                 child.Content = null;
             }
             player = "X";
+            isGameOver = false;
         }
 
         private void uxExit_Click(object sender, RoutedEventArgs e)
@@ -57,19 +60,24 @@ namespace TicTacToe
             // is actually a string (unbox it or call ToString). Then you can parse the string into row and column.
             // Remember the Button_Click event has an object sender parameter.That sender object is a Button, 
             // so cast it to a Button and get the Tag object.
-
-            Button uxButton = sender as Button;
-            string tagString = uxButton.Tag.ToString();
-            mark_grid_button(uxButton, tagString);
-            if (isWinner(uxButton, tagString))
+            if (!isGameOver)
             {
-                MessageBox.Show($"{player} is the winner!");
-                clear_board();
+                Button uxButton = sender as Button;
+                string tagString = uxButton.Tag.ToString();
+                mark_grid_button(uxButton, tagString);
+                if (isWinner(uxButton, tagString))
+                {
+                    //MessageBox.Show($"{player} is the winner!");
+                    uxTurn.Text = player + " is the winner!";
+                    isGameOver = true;
+                    return;
+                }
+
+                // swap the player variable for next turn.
+                if (player == "X") player = "O";
+                else if (player == "O") player = "X";
+                uxTurn.Text = player + " turn";
             }
-                
-            // swap the player variable for next turn.
-            if (player == "X") player = "O";
-            else if (player == "O") player = "X";
         }
 
         private void mark_grid_button(Button uxButton, string tagString)
@@ -142,13 +150,46 @@ namespace TicTacToe
             {
                 case "0,0":
                     if (myButtonList[3].Content == player && myButtonList[6].Content == player) return true;
-
-                    //if (uxGrid.Children[3].ToString() == player && uxGrid.Children[6].ToString() == player) return true;
-                    //if (uxGrid.Children[1].ToString() == player && uxGrid.Children[2].ToString() == player) return true;
-                    //if (uxGrid.Children[4].ToString() == player && uxGrid.Children[8].ToString() == player) return true;
-                        break;
+                    if (myButtonList[1].Content == player && myButtonList[2].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[8].Content == player) return true;
+                    break;
                 case "0,1":
-
+                    if (myButtonList[0].Content == player && myButtonList[2].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[7].Content == player) return true;
+                    break;
+                case "0,2":
+                    if (myButtonList[0].Content == player && myButtonList[1].Content == player) return true;
+                    if (myButtonList[5].Content == player && myButtonList[8].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[6].Content == player) return true;
+                    break;
+                case "1,0":
+                    if (myButtonList[4].Content == player && myButtonList[5].Content == player) return true;
+                    if (myButtonList[0].Content == player && myButtonList[6].Content == player) return true;
+                    break;
+                case "1,1":
+                    if (myButtonList[3].Content == player && myButtonList[5].Content == player) return true;
+                    if (myButtonList[6].Content == player && myButtonList[2].Content == player) return true;
+                    if (myButtonList[0].Content == player && myButtonList[8].Content == player) return true;
+                    if (myButtonList[1].Content == player && myButtonList[7].Content == player) return true;
+                    break;
+                case "1,2":
+                    if (myButtonList[2].Content == player && myButtonList[8].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[3].Content == player) return true;
+                    break;
+                case "2,0":
+                    if (myButtonList[3].Content == player && myButtonList[0].Content == player) return true;
+                    if (myButtonList[7].Content == player && myButtonList[8].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[2].Content == player) return true;
+                    break;
+                case "2,1":
+                    if (myButtonList[6].Content == player && myButtonList[8].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[1].Content == player) return true;
+                    break;
+                case "2,2":
+                    if (myButtonList[6].Content == player && myButtonList[7].Content == player) return true;
+                    if (myButtonList[5].Content == player && myButtonList[2].Content == player) return true;
+                    if (myButtonList[4].Content == player && myButtonList[0].Content == player) return true;
+                    break;
                 default:
                     break;
             }
