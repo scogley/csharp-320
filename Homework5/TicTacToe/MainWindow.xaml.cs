@@ -42,6 +42,7 @@ namespace TicTacToe
             {
                 child.Content = null;
             }
+            player = "X";
         }
 
         private void uxExit_Click(object sender, RoutedEventArgs e)
