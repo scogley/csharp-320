@@ -63,7 +63,12 @@ namespace TicTacToe
             {
                 Button uxButton = sender as Button;
                 string tagString = uxButton.Tag.ToString();
+                // Allow placement only on empty spots.
+                if (uxButton.Content != null) return;
+
+                // Place the mark on empty spot.
                 mark_grid_button(uxButton, tagString);
+
                 // When you get three in a row, you declare a winner. Stop any more actions.
                 if (isWinner(uxButton, tagString))
                 {
@@ -72,11 +77,16 @@ namespace TicTacToe
                     return;
                 }
 
-                // Swap the player variable for next turn.
-                if (player == "X") player = "O";
-                else if (player == "O") player = "X";
-                uxTurn.Text = player + " turn";
+                swapPlayerForNextTurn();
             }
+        }
+
+        private void swapPlayerForNextTurn()
+        {
+            // Fall here if game is not over. Swap the player variable for next turn.
+            if (player == "X") player = "O";
+            else if (player == "O") player = "X";
+            uxTurn.Text = player + " turn";
         }
 
         private void mark_grid_button(Button uxButton, string tagString)
@@ -136,7 +146,7 @@ namespace TicTacToe
 
         bool isWinner(Button uxButton, string tagString)
         {
-            // Keep it simple: a list of button objects with a Content property as the data structure for the game board.
+            // Keep it simple: use existing collection to build a list of button objects with a Content property as the data structure for the game board.
             List<Button> gameBoardButtons = new List<Button>();
             foreach (Button btn in uxGrid.Children)
             {
