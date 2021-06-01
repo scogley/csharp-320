@@ -61,7 +61,11 @@ namespace TicTacToe
             Button uxButton = sender as Button;
             string tagString = uxButton.Tag.ToString();
             mark_grid_button(uxButton, tagString);
-            isWinner(uxButton, tagString);
+            if (isWinner(uxButton, tagString))
+            {
+                MessageBox.Show($"{player} is the winner!");
+                clear_board();
+            }
                 
             // swap the player variable for next turn.
             if (player == "X") player = "O";
@@ -125,8 +129,26 @@ namespace TicTacToe
 
         bool isWinner(Button uxButton, string tagString)
         {
+            Button mybutton = uxGrid.Children[0] as Button;
+
+            List<Button> myButtonList = new List<Button>();
+            foreach (Button child in uxGrid.Children)
+            {
+                Button button = child as Button;
+                myButtonList.Add(button);
+            }
+
             switch (tagString)
             {
+                case "0,0":
+                    if (myButtonList[3].Content == player && myButtonList[6].Content == player) return true;
+
+                    //if (uxGrid.Children[3].ToString() == player && uxGrid.Children[6].ToString() == player) return true;
+                    //if (uxGrid.Children[1].ToString() == player && uxGrid.Children[2].ToString() == player) return true;
+                    //if (uxGrid.Children[4].ToString() == player && uxGrid.Children[8].ToString() == player) return true;
+                        break;
+                case "0,1":
+
                 default:
                     break;
             }
