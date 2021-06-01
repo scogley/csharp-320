@@ -23,7 +23,7 @@ namespace TicTacToe
         // The current player X or O. X is default.
         private string player = "X";
 
-        bool isGameOver = false;
+        private bool isGameOver = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,8 +33,6 @@ namespace TicTacToe
         {
             reset_game();
             // X goes first, then O.
-
-            // When you get three in a row, you declare a winner. Stop any more actions.
         }
 
         private void reset_game()
@@ -51,6 +49,7 @@ namespace TicTacToe
         private void uxExit_Click(object sender, RoutedEventArgs e)
         {
             // Exit the game.
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,15 +64,15 @@ namespace TicTacToe
                 Button uxButton = sender as Button;
                 string tagString = uxButton.Tag.ToString();
                 mark_grid_button(uxButton, tagString);
+                // When you get three in a row, you declare a winner. Stop any more actions.
                 if (isWinner(uxButton, tagString))
                 {
-                    //MessageBox.Show($"{player} is the winner!");
                     uxTurn.Text = player + " is the winner!";
                     isGameOver = true;
                     return;
                 }
 
-                // swap the player variable for next turn.
+                // Swap the player variable for next turn.
                 if (player == "X") player = "O";
                 else if (player == "O") player = "X";
                 uxTurn.Text = player + " turn";
@@ -137,58 +136,57 @@ namespace TicTacToe
 
         bool isWinner(Button uxButton, string tagString)
         {
-            Button mybutton = uxGrid.Children[0] as Button;
-
-            List<Button> myButtonList = new List<Button>();
-            foreach (Button child in uxGrid.Children)
+            // Keep it simple: a list of button objects with a Content property as the data structure for the game board.
+            List<Button> gameBoardButtons = new List<Button>();
+            foreach (Button btn in uxGrid.Children)
             {
-                Button button = child as Button;
-                myButtonList.Add(button);
+                gameBoardButtons.Add(btn);
             }
-
+            
+            // Checks the adjacent values to determine if win condition is met (3 in a row!).
             switch (tagString)
             {
                 case "0,0":
-                    if (myButtonList[3].Content == player && myButtonList[6].Content == player) return true;
-                    if (myButtonList[1].Content == player && myButtonList[2].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[8].Content == player) return true;
+                    if (gameBoardButtons[3].Content == player && gameBoardButtons[6].Content == player) return true;
+                    if (gameBoardButtons[1].Content == player && gameBoardButtons[2].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[8].Content == player) return true;
                     break;
                 case "0,1":
-                    if (myButtonList[0].Content == player && myButtonList[2].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[7].Content == player) return true;
+                    if (gameBoardButtons[0].Content == player && gameBoardButtons[2].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[7].Content == player) return true;
                     break;
                 case "0,2":
-                    if (myButtonList[0].Content == player && myButtonList[1].Content == player) return true;
-                    if (myButtonList[5].Content == player && myButtonList[8].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[6].Content == player) return true;
+                    if (gameBoardButtons[0].Content == player && gameBoardButtons[1].Content == player) return true;
+                    if (gameBoardButtons[5].Content == player && gameBoardButtons[8].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[6].Content == player) return true;
                     break;
                 case "1,0":
-                    if (myButtonList[4].Content == player && myButtonList[5].Content == player) return true;
-                    if (myButtonList[0].Content == player && myButtonList[6].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[5].Content == player) return true;
+                    if (gameBoardButtons[0].Content == player && gameBoardButtons[6].Content == player) return true;
                     break;
                 case "1,1":
-                    if (myButtonList[3].Content == player && myButtonList[5].Content == player) return true;
-                    if (myButtonList[6].Content == player && myButtonList[2].Content == player) return true;
-                    if (myButtonList[0].Content == player && myButtonList[8].Content == player) return true;
-                    if (myButtonList[1].Content == player && myButtonList[7].Content == player) return true;
+                    if (gameBoardButtons[3].Content == player && gameBoardButtons[5].Content == player) return true;
+                    if (gameBoardButtons[6].Content == player && gameBoardButtons[2].Content == player) return true;
+                    if (gameBoardButtons[0].Content == player && gameBoardButtons[8].Content == player) return true;
+                    if (gameBoardButtons[1].Content == player && gameBoardButtons[7].Content == player) return true;
                     break;
                 case "1,2":
-                    if (myButtonList[2].Content == player && myButtonList[8].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[3].Content == player) return true;
+                    if (gameBoardButtons[2].Content == player && gameBoardButtons[8].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[3].Content == player) return true;
                     break;
                 case "2,0":
-                    if (myButtonList[3].Content == player && myButtonList[0].Content == player) return true;
-                    if (myButtonList[7].Content == player && myButtonList[8].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[2].Content == player) return true;
+                    if (gameBoardButtons[3].Content == player && gameBoardButtons[0].Content == player) return true;
+                    if (gameBoardButtons[7].Content == player && gameBoardButtons[8].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[2].Content == player) return true;
                     break;
                 case "2,1":
-                    if (myButtonList[6].Content == player && myButtonList[8].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[1].Content == player) return true;
+                    if (gameBoardButtons[6].Content == player && gameBoardButtons[8].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[1].Content == player) return true;
                     break;
                 case "2,2":
-                    if (myButtonList[6].Content == player && myButtonList[7].Content == player) return true;
-                    if (myButtonList[5].Content == player && myButtonList[2].Content == player) return true;
-                    if (myButtonList[4].Content == player && myButtonList[0].Content == player) return true;
+                    if (gameBoardButtons[6].Content == player && gameBoardButtons[7].Content == player) return true;
+                    if (gameBoardButtons[5].Content == player && gameBoardButtons[2].Content == player) return true;
+                    if (gameBoardButtons[4].Content == player && gameBoardButtons[0].Content == player) return true;
                     break;
                 default:
                     break;
