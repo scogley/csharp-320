@@ -29,7 +29,7 @@ namespace HelloWorldASP_MVC
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles(); // Add this for CSS to be applied.
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

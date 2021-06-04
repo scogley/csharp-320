@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
     <title>RsvpForm</title>
 </head>
 <body>
@@ -17,10 +18,13 @@
     <div class="row">
         <div class="col-md-4">
             <form action="/Home/RsvpForm" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label" for="Name">Name</label>
-                    <input class="form-control" type="text" id="Name" name="Name" value="" />
-                    <span class="text-danger field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                    <input class="form-control input-validation-error" type="text"
+                           data-val="true" data-val-required="Please enter your name" id="Name" name="Name" value="" />
+                    <span class="text-danger field-validation-error" data-valmsg-for="Name"
+                          data-valmsg-replace="true">Please enter your name</span>
                 </div>
 
                 <div class="form-group">
