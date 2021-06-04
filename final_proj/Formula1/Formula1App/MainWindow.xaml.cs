@@ -44,7 +44,19 @@ namespace Formula1App
 
         private void uxFileChange_Click(object sender, RoutedEventArgs e)
         {
-            //todo: add stuff here!
+            var window = new ChangeWindow();
+
+            if (window.ShowDialog() == true)
+            {
+                var uiContactModel = window.Driver;
+
+                var repositoryContactModel = uiContactModel.ToRepositoryModel();
+
+                App.DriverRepository.Add(repositoryContactModel);
+
+                // OR
+                //App.ContactRepository.Add(window.Contact.ToRepositoryModel());
+            }
         }
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
@@ -55,6 +67,11 @@ namespace Formula1App
         private void SortGridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
             //todo: add stuff here!
+        }
+
+        private void uxFileChange_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
