@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Formula1App.Models;
 
 namespace Formula1App
 {
@@ -20,9 +21,21 @@ namespace Formula1App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DriverModel selectedDriver;
         public MainWindow()
         {
             InitializeComponent();
+
+           
+        }
+
+        private void LoadDrivers()
+        {
+            var drivers = App.DriverRepository.GetAll();
+
+            uxContactList.ItemsSource = drivers
+                .Select(t => DriverModel.ToModel(t))
+                .ToList();
         }
 
         private void uxFileNew_Click(object sender, RoutedEventArgs e)
@@ -72,6 +85,11 @@ namespace Formula1App
         private void uxFileChange_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void uxFileListAll_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDrivers();
         }
     }
 
