@@ -29,12 +29,22 @@ namespace Formula1App
 
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
-            Driver = new DriverModel();
 
-            // TODO: update the driver record entered in uxDriverId.Text
-
-
+            var driver = App.DriverRepository.GetDriverById(uxDriverId.Text);
             
+          
+            driver.DriverName = uxDriverName.Text;
+            driver.TeamName = uxTeamName.Text;
+            driver.Position = uxPosition.Text;
+
+            driver.CreatedDate = DateTime.Now;
+
+
+            var uiContactModel = driver;
+
+            var repositoryContactModel = uiContactModel.ToRepositoryModel();
+
+            App.DriverRepository.Update(repositoryContactModel);
 
             // This is the return value of ShowDialog( ) below
             DialogResult = true;

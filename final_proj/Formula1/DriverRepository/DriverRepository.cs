@@ -57,6 +57,26 @@ namespace DriverRepository
             return items;
         }
 
+        public DriverModel GetDriverById(string DriverId)
+        {
+            // Use .Find to get the original driver from db and return a DriverModel.
+            var orig_db_driver = DatabaseManager.Instance.TblDriver
+              .Find(int.Parse(DriverId));
+
+            DriverModel origDriverModel = new DriverModel();
+            origDriverModel.Id = orig_db_driver.Id;
+            origDriverModel.CircuitName = orig_db_driver.CircuitName;
+            origDriverModel.DriverName = orig_db_driver.DriverName;
+            origDriverModel.TeamName = orig_db_driver.TeamName;
+            origDriverModel.Position = orig_db_driver.Position;
+            origDriverModel.Points = orig_db_driver.Points;
+            origDriverModel.CreatedDate = orig_db_driver.CreatedDate;
+
+            return origDriverModel;
+        }
+
+
+
         public bool Update(DriverModel driverModel)
         {
             var original = DatabaseManager.Instance.TblDriver.Find(driverModel.Id);

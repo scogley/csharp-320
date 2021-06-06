@@ -19,7 +19,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <ListView x:Name="uxContactList" Height="200">
+        <ListView x:Name="uxDriverList" Height="200">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="uxContextFileNew" Header="_New" Click="uxFileNew_Click"/>

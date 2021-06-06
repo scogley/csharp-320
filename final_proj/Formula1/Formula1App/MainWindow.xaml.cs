@@ -33,7 +33,7 @@ namespace Formula1App
         {
             var drivers = App.DriverRepository.GetAll();
 
-            uxContactList.ItemsSource = drivers
+            uxDriverList.ItemsSource = drivers
                 .Select(t => DriverModel.ToModel(t))
                 .ToList();
         }
@@ -61,16 +61,18 @@ namespace Formula1App
 
             if (window.ShowDialog() == true)
             {
-                var uiContactModel = window.Driver;
+
+                var uiContactModel = ChangeWindow.Driver;
 
                 var repositoryContactModel = uiContactModel.ToRepositoryModel();
 
-                App.DriverRepository.Add(repositoryContactModel);
-
+                App.DriverRepository.Update(repositoryContactModel);
                 // OR
                 //App.ContactRepository.Add(window.Contact.ToRepositoryModel());
             }
         }
+
+       
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -82,11 +84,7 @@ namespace Formula1App
             //todo: add stuff here!
         }
 
-        private void uxFileChange_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void uxFileListAll_Click(object sender, RoutedEventArgs e)
         {
             LoadDrivers();
