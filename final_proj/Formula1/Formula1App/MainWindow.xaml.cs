@@ -62,11 +62,13 @@ namespace Formula1App
             if (window.ShowDialog() == true)
             {
 
-                var uiContactModel = ChangeWindow.Driver;
+                //var uiContactModel = ChangeWindow.Driver;
 
-                var repositoryContactModel = uiContactModel.ToRepositoryModel();
+                //var repositoryContactModel = uiContactModel.ToRepositoryModel();
 
-                App.DriverRepository.Update(repositoryContactModel);
+                //App.DriverRepository.Update(repositoryContactModel);
+                
+                
                 // OR
                 //App.ContactRepository.Add(window.Contact.ToRepositoryModel());
             }

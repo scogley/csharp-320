@@ -31,20 +31,14 @@ namespace Formula1App
         {
 
             var driver = App.DriverRepository.GetDriverById(uxDriverId.Text);
-            
-          
             driver.DriverName = uxDriverName.Text;
             driver.TeamName = uxTeamName.Text;
             driver.Position = uxPosition.Text;
 
             driver.CreatedDate = DateTime.Now;
 
+            App.DriverRepository.Update(driver);
 
-            var uiContactModel = driver;
-
-            var repositoryContactModel = uiContactModel.ToRepositoryModel();
-
-            App.DriverRepository.Update(repositoryContactModel);
 
             // This is the return value of ShowDialog( ) below
             DialogResult = true;
