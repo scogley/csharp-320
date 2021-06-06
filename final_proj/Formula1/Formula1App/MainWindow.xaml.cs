@@ -91,6 +91,12 @@ namespace Formula1App
         {
             LoadDrivers();
         }
+
+        private void uxFileQuit_Click(object sender, RoutedEventArgs e)
+        {
+            // Exit the app.
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 
 
