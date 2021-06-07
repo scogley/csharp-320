@@ -21,7 +21,7 @@ namespace Formula1App
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DriverModel selectedDriver;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +36,7 @@ namespace Formula1App
             uxDriverList.ItemsSource = drivers
                 .Select(t => DriverModel.ToModel(t))
                 .ToList();
+            uxStatus.Text = drivers.Count.ToString() + " rows";
         }
 
         private void uxFileNew_Click(object sender, RoutedEventArgs e)

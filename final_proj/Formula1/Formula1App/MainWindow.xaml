@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Formula1App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
+    
     <StackPanel Orientation="Vertical">
         <Menu>
             <MenuItem Header="_File">
@@ -68,7 +69,13 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox>foo</TextBox>
-        <Button>clickme</Button>
+       
+        <DockPanel>
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock x:Name="uxStatus"></TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
     </StackPanel>
 </Window>
