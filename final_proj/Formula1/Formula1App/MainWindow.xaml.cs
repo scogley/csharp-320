@@ -78,7 +78,11 @@ namespace Formula1App
 
         private void uxFileDelete_Click(object sender, RoutedEventArgs e)
         {
-            //todo: add stuff here!
+            var window = new DeleteWindow();
+            if(window.ShowDialog() == true)
+            {
+
+            }
         }
 
         private void SortGridViewColumnHeader_Click(object sender, RoutedEventArgs e)

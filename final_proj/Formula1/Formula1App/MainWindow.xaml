@@ -13,6 +13,8 @@
                 </MenuItem>
                 <MenuItem x:Name="uxFileChange" Header="_Change" Click="uxFileChange_Click">
                 </MenuItem>
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click">
+                </MenuItem>
                 <MenuItem x:Name="uxFileListAll" Header="_List All" Click="uxFileListAll_Click">
                 </MenuItem>
                 <MenuItem x:Name="uxFileQuit" Header="_Quit" Click="uxFileQuit_Click">

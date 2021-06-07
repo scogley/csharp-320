@@ -1,0 +1,34 @@
+﻿<Window x:Class="Formula1App.DeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Formula1App"
+        mc:Ignorable="d"
+        Title="Delete By Id" Height="180" Width="230">
+    <Grid x:Name="uxGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">Driver Id:</TextBlock>
+        <TextBox x:Name="uxDriverId" Grid.Column="1" Grid.Row="0"></TextBox>
+
+        
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right">
+            <Button x:Name="uxSubmit"  MinWidth="10" HorizontalAlignment="Center" Click="uxSubmit_Click" Margin="10">Delete</Button>
+            <Button x:Name="uxCancel"  MinWidth="10" HorizontalAlignment="Center" Click="uxCancel_Click" Margin="10">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>
