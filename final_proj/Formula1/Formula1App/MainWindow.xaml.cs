@@ -39,6 +39,16 @@ namespace Formula1App
             uxStatus.Text = drivers.Count.ToString() + " rows";
         }
 
+        private void LoadDrivers(string query)
+        {
+            var drivers = App.DriverRepository.GetAll(query);
+
+            uxDriverList.ItemsSource = drivers
+                .Select(t => DriverModel.ToModel(t))
+                .ToList();
+            uxStatus.Text = drivers.Count.ToString() + " rows";
+        }
+
         private void uxFileNew_Click(object sender, RoutedEventArgs e)
         {
             var window = new DriverWindow();
@@ -101,6 +111,11 @@ namespace Formula1App
         {
             // Exit the app.
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void uxSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDrivers(uxSearchBox.Text);
         }
     }
 

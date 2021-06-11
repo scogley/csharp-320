@@ -41,7 +41,7 @@ namespace DriverRepository
 
         public List<DriverModel> GetAll()
         {
-            // Use .Select() to map the database contacts to ContactModel
+            // Use .Select() to map the database contacts to DriverModel
             var items = DatabaseManager.Instance.TblDriver
               .Select(t => new DriverModel
               {
@@ -54,6 +54,29 @@ namespace DriverRepository
                   CreatedDate = t.CreatedDate,
               }).ToList();
 
+            return items;
+        }
+
+        public List<DriverModel> GetAll(string query)
+        {
+            // Use .Select() to map the database contacts to DriverModel
+            // Then .Where to filter the results by the query string.
+            var items = DatabaseManager.Instance.TblDriver
+              .Select(t => new DriverModel
+              {
+                  Id = t.Id,
+                  CircuitName = t.CircuitName,
+                  DriverName = t.DriverName,
+                  TeamName = t.TeamName,
+                  Position = t.Position,
+                  Points = t.Points,
+                  CreatedDate = t.CreatedDate,
+              }).Where(t => t.DriverName == query || 
+              t.TeamName == query ||
+              t.Position == query ||
+              t.Points == query
+              ).ToList();
+            
             return items;
         }
 
@@ -75,7 +98,7 @@ namespace DriverRepository
             return origDriverModel;
         }
 
-
+        
 
         public bool Update(DriverModel driverModel)
         {

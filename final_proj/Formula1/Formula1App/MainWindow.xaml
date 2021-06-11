@@ -68,8 +68,25 @@
 
                 </GridView>
             </ListView.View>
+            
         </ListView>
-       
+
+        
+        <Grid x:Name="uxSearchGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Search </TextBlock>
+            <TextBox x:Name="uxSearchBox" Grid.Column="1" Grid.Row="0"></TextBox>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center">
+                <Button x:Name="uxSubmit"  MinWidth="10" HorizontalAlignment="Left" Click="uxSubmit_Click" Margin="10">Search</Button>
+            </StackPanel>
+        </Grid>
         <DockPanel>
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>
