@@ -10,6 +10,7 @@ namespace HelloWorldASP_MVC.Models
     {
         [Required(ErrorMessage = "Please enter your name")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Please enter your phone")]
         public string Phone { get; set; }
         public bool? WillAttend { get; set; }
         public string Email { get; set; }
