@@ -29,6 +29,27 @@ namespace Formula1App
 
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(uxDriverName.Text)) 
+            {
+                uxFieldError.Text = "Driver Name is required";
+                return;
+            }
+            if (string.IsNullOrEmpty(uxTeamName.Text))
+            {
+                uxFieldError.Text = "Team Name is required";
+                return;
+            }
+            if (string.IsNullOrEmpty(uxPosition.Text))
+            {
+                uxFieldError.Text = "Position is required";
+                return;
+            }
+            if (string.IsNullOrEmpty(uxPoints.Text))
+            {
+                uxFieldError.Text = "Points is required";
+                return;
+            }
+
             Driver = new DriverModel();
 
             Driver.DriverName = uxDriverName.Text;
