@@ -25,7 +25,14 @@ namespace Homework6.Controllers
         [HttpPost]
         public IActionResult CardSent(Models.Response cardSentResponse)
         {
-            return View(cardSentResponse);
+            if (ModelState.IsValid) // show success view.
+            {
+                return View("CardSent", cardSentResponse);
+            }
+            else // update the form submission view with the missing fields user must enter.
+            {
+                return View("Index", cardSentResponse);
+            }
         }
     }
 }
