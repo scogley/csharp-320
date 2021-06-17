@@ -9,15 +9,37 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-
-    <title>Birthday Card Generator</title>
+    <title>CardSent</title>
 </head>
 <body>
-    <h4>Birthday Card Sent</h4>
-    From: @Model.From
-    To: @Model.To
-    Message: @Model.Message
-    
 
+<div>
+    <h4>Response</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
 </body>
 </html>

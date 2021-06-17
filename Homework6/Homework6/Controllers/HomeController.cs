@@ -14,11 +14,18 @@ namespace Homework6.Controllers
             return View();
         }
 
-        // Receive the data coming from the browser
-        [HttpPost]
-        public IActionResult SendCardForm(Models.Response cardSentResponse)
+        // Display the view (empty form)
+        [HttpGet]
+        public IActionResult CardSent()
         {
             return View(new Response());
+        }
+
+        // Receive the data coming from the browser
+        [HttpPost]
+        public IActionResult CardSent(Models.Response cardSentResponse)
+        {
+            return View(cardSentResponse);
         }
     }
 }
