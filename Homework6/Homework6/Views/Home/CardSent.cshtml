@@ -14,37 +14,19 @@
             background-color: #f1f1f1;
         }
     </style>
-    <title>CardSent</title>
+    <title>Birthday Card Generator</title>
 </head>
 <body>
 
 <div>
-    <h4>Response</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.From)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.From)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.To)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.To)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Message)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Message)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <h4>Birthday Card Generator</h4>
+    <h2>Birthday Card Sent</h2>
+    
+    From: @Model.From
+    <br />
+    To: @Model.To
+    <br />
+    Message: @Model.Message
 </div>
 </body>
 </html>
